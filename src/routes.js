@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Home from './pages/Home'
-import Releases from './pages/Releases'
+import Details from './pages/Details'
+import colors from './theme/colors'
 
 const AppStack = createStackNavigator()
 
@@ -14,12 +15,12 @@ const Routes = () => {
         headerMode="none"
         screenOptions={{
           cardStyle: {
-            backgroundColor: '#f0f0f5'
+            backgroundColor: colors.background
           }
         }}
       >
         <AppStack.Screen name="Home" component={Home}/>
-        <AppStack.Screen name="Releases" component={Releases}/>
+        <AppStack.Screen name="Details" component={Details}/>
       </AppStack.Navigator>
     </NavigationContainer>
   )

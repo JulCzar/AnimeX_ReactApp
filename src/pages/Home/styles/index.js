@@ -3,7 +3,6 @@ import colors from '../../../theme/colors'
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: colors.background,
     justifyContent: 'center',
     paddingHorizontal: 24,
     flex: 1,
