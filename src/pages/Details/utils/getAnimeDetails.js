@@ -11,7 +11,7 @@ const getAnimeDetails = async (id, callback) => {
   
   const dataParsed = apiResponse.value.reduce((acc, data) => {
     const { Nome, Desc, Imagem, Ano, Status, Categoria } = data
-    const status = Status?'Em Andamento':'Completo'
+    // const status = Status?'Em Andamento':'Completo'
     const tags = Categoria
       .split(',')
       .map(item => item.trim())
@@ -22,8 +22,8 @@ const getAnimeDetails = async (id, callback) => {
       desc: Desc,
       year: Ano,
       image: { uri: Imagem },
+      // status,
       tags,
-      status,
     }
     
     return acc

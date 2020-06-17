@@ -1,56 +1,61 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, Image, ImageBackground } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import { RectButton } from 'react-native-gesture-handler'
+import { RectButton, ScrollView } from 'react-native-gesture-handler'
+import { Text, View } from 'react-native'
 
 import getAnimeDetails from './utils/getAnimeDetails'
 
 import styles from './styles'
 import model from './model/animeDetails'
 
-import truncate from '../../utils/truncate'
+import AnimeInfo from './components/animeInfo'
+import getEpisodeList from './utils/getEpisodeList'
 
 const Details = () => {
-  const [{name, image, tags, desc, year, status}, setAnimeDetails] = useState(model)
+  const [animeDetails, setAnimeDetails] = useState(model)
+  const [episodeList, setEpisodeList] = useState([])
 
   const { params: { id }} = useRoute()
-
   const navigation = useNavigation()
 
   useEffect(() => {
     getAnimeDetails(id, setAnimeDetails)
   }, [])
 
+  useEffect(() => {
+    getEpisodeList(id, setEpisodeList)
+  },[])
+
   return (
     <View style={styles.screen} >
-      <RectButton
-        style={styles.returnContainer}
-        onPress={navigation.goBack}
-        activeOpacity={0}
+      <ScrollView
+        contentContainerStyle={styles.animeScroller}
+        showsVerticalScrollIndicator={false}
+        style={styles.animesContainer}
+        vertical
       >
-        <Text style={styles.returnButton}>
-          &lt;- Voltar
-        </Text>
-      </RectButton>
-      <View style={styles.animeDetails}>
-        <ImageBackground
-          source={image}
-          blurRadius={.5}
-          style={styles.imageContainer}
+        <RectButton
+          style={styles.returnContainer}
+          onPress={navigation.goBack}
+          activeOpacity={0}
         >
-          <View style={styles.halfBright}>
-            <Image style={styles.image} source={image}/>
-          </View>
-        </ImageBackground>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{name}</Text>
+          <Text style={styles.returnButton}>
+            &lt;- Voltar
+          </Text>
+        </RectButton>
+
+        <AnimeInfo data={animeDetails}/>
+        
+        <View style={styles.episodeList}>
+          {episodeList.map(({ id, label }) => {
+            return (
+              <View key={id} style={styles.episode}>
+                <Text style={styles.episodeLabel}>{label}</Text>
+              </View>
+            )
+          })}
         </View>
-        <View style={styles.aditional}>
-          <Text style={styles.tags}>{tags.join(', ')}</Text>
-          <Text style={styles.year}>Ano: {year}</Text>
-        </View>
-        <Text style={styles.desc}>{'\t\t\t' + truncate(desc, 330)}</Text>
-      </View>
+      </ScrollView>
     </View>
   )
 }

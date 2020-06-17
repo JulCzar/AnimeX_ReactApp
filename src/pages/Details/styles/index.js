@@ -1,12 +1,15 @@
 import { StyleSheet } from 'react-native'
 
 import colors from '../../../theme/colors'
-import infos from './animesInfos'
+import infosStyle from './animesInfos'
+import episodeListStyle from './episode'
 
 const styles = StyleSheet.create({
   screen: {
-    paddingTop: 20,
     paddingHorizontal: 14
+  },
+  animeScroller: {
+    paddingVertical: 20,
   },
   returnContainer: {
     marginBottom: 20,
@@ -17,7 +20,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.accent
   },
-  ...infos
+  ...infosStyle,
+  ...episodeListStyle
 })
 
 export default styles

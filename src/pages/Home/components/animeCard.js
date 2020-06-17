@@ -1,9 +1,8 @@
 import React from 'react'
 import { RectButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
-import { View, Image, Text, StyleSheet } from 'react-native'
+import { View, Image, Text } from 'react-native'
 
-import colors from '../../../theme/colors'
 import truncate from '../../../utils/truncate'
 
 const AnimeCard = ({ data }) => {
@@ -25,13 +24,17 @@ const AnimeCard = ({ data }) => {
       <Image style={styles.image} source={image} />
       <View style={styles.nameContainer}>
         <Text style={styles.animeName}>
-          { truncate(name, 45) }
+          { truncate(name, 34) }
         </Text>
       </View>
     </RectButton>
   </View>
   )
 }
+
+import { StyleSheet } from 'react-native'
+
+import colors from '../../../theme/colors'
 
 const styles = StyleSheet.create({
   anime: {
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   animeName: {
-    paddingVertical: 5,
+    padding: 5,
     color: 'white',
     textAlign: 'center',
   }

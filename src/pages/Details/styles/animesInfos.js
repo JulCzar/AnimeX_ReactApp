@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import colors from '../../../theme/colors'
 import image from './image'
 
-const infos = StyleSheet.create({
+const infosStyle = StyleSheet.create({
   ...image,
   aditional: {
     flexDirection: 'row',
@@ -16,21 +16,27 @@ const infos = StyleSheet.create({
     color: `${colors.accent}a3`
   },
   titleContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
     width: '100%',
     justifyContent: 'center',
   },
   title: {
-    color: colors.accent,
+    width: '80%',
+    color: colors.title,
     fontWeight: 'bold',
-    textAlign: 'auto',
-    fontSize: 24,
+    // textAlign: 'auto',
+    fontSize: 22,
   },
   desc: {
     textAlign: 'justify',
     color: colors.accent
   },
   year: {
+    width: '20%',
     fontSize: 10,
+    textAlign: 'right',
+    paddingRight: 4,
     color: `${colors.accent}a3`
   },
   status: {
@@ -39,4 +45,4 @@ const infos = StyleSheet.create({
   }
 })
 
-export default infos
+export default infosStyle
