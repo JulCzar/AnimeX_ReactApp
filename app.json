@@ -4,7 +4,7 @@
     "slug": "AnimeX",
     "platforms": ["android"],
     "version": "1.0.0",
-    "orientation": "auto",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -17,6 +17,9 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "ios": {
+      "requireFullScreen": true
+    },
     "android": {
       "package": "com.julczar.animex"
     }

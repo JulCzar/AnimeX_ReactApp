@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import { Video } from 'expo-av';
-import { useRoute } from '@react-navigation/native';
+import * as orientation from 'expo-screen-orientation'
 import getVideoQualities from './utils/getVideoQualities';
+import { useRoute } from '@react-navigation/native';
+import { Video } from 'expo-av';
 import styles from './styles';
-// import { useRoute } from '@react-navigation/native';
 
 const VideoPlayer = () => {
   const { params: { id } } = useRoute()
-
   const [video, setVideo] = useState({})
 
   useEffect(() => {
     getVideoQualities(id, setVideo)
   })
 
+
+  const playVideo = () => {}
+
   return (
     <Video
-      source={video}
-      rate={1.0}
-      volume={1.0}
-      isMuted={false}
-      resizeMode="contain"
-      useNativeControls
+      useNativeControls={true}
       style={styles.video}
+      resizeMode="contain"
+      source={video}
     />)
 }
 

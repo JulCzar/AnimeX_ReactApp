@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
+import * as orientation from 'expo-screen-orientation'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Home from './pages/Home'
@@ -10,6 +11,8 @@ import VideoPlayer from './pages/Video'
 const AppStack = createStackNavigator()
 
 const Routes = () => {
+  orientation.lockAsync(0)
+
   return (
     <NavigationContainer>
       <AppStack.Navigator

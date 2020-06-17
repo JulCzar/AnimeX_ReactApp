@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Image, View, ScrollView } from 'react-native';
+import { Image, View, ScrollView } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
 import AnimeCard from './components/animeCard';
