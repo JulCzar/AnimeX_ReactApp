@@ -49,8 +49,13 @@ const Details = () => {
         <View style={styles.episodeList}>
           {episodeList.map(({ id, label }) => {
             return (
-              <View key={id} style={styles.episode}>
-                <Text style={styles.episodeLabel}>{label}</Text>
+              <View key={id} style={[styles.episode]}>
+                <RectButton
+                  style={{width: '100%'}}
+                  onPress={() => navigation.navigate('VideoPlayer', { id })}
+                >
+                  <Text style={styles.episodeLabel}>{label}</Text>
+                </RectButton>
               </View>
             )
           })}

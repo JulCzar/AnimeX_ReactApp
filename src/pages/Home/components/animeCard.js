@@ -1,7 +1,7 @@
 import React from 'react'
 import { RectButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
-import { View, Image, Text } from 'react-native'
+import { View, Image, Text, Dimensions } from 'react-native'
 
 import truncate from '../../../utils/truncate'
 
@@ -33,6 +33,7 @@ const AnimeCard = ({ data }) => {
 }
 
 import { StyleSheet } from 'react-native'
+import { vmin } from 'react-native-expo-viewport-units'
 
 import colors from '../../../theme/colors'
 
@@ -45,11 +46,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 15,
     borderWidth: 5,
-    width: '47.5%',
+    width: vmin(42),
+    height: vmin(66)
   },
   image: {
-    height: 230,
-    width: 175,
+    width: vmin(42),
+    height: vmin(52),
   },
   nameContainer: {
     justifyContent: 'center',

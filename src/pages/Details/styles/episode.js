@@ -7,18 +7,18 @@ const episodeListStyle = StyleSheet.create({
     alignItems: 'center',
   },
   episode: {
-    backgroundColor: colors.accent,
-    borderColor: colors.primary,
-    paddingVertical: 12,
+    overflow: 'hidden',
+    borderColor: colors.accent,
     marginVertical: 5,
     borderRadius: 20,
     borderWidth: 3,
     width: '100%',
   },
   episodeLabel: {
+    paddingVertical: 12,
     textAlign: 'center',
     fontWeight: 'bold',
-    color: 'white',
+    color: colors.accent,
     fontSize: 16,
   }
 })

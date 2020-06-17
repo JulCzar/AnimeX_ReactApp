@@ -41,10 +41,10 @@ const Home = () => {
             <Image source={logo}/>
           </RectButton>
         </View>
-        {screen[0] === 'Home'
-          ?animes.map(({ id, name, image }) => <AnimeCard key={id} data={{id,name,image}}/>)
-          :releases.map(({ id, name, image }) => <AnimeCard key={id} data={{id,name,image}}/>)
-        }
+        {( screen[0] === 'Home' ? animes : releases )
+          .map(({ id, name, image }) => (
+            <AnimeCard key={id} data={{id,name,image}}/>
+          ))}
       </ScrollView>
     </View>
   );

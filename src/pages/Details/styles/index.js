@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native'
 
 import colors from '../../../theme/colors'
-import infosStyle from './animesInfos'
 import episodeListStyle from './episode'
+import infosStyle from './animesInfos'
 
 const styles = StyleSheet.create({
   screen: {

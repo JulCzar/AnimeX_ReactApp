@@ -13,19 +13,20 @@ const infosStyle = StyleSheet.create({
   },
   tags: {
     fontSize: 10,
-    color: `${colors.accent}a3`
+    color: `${colors.subtitle}a3`
   },
   titleContainer: {
+    position: 'relative',
     alignItems: 'center',
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'center',
   },
   title: {
-    width: '80%',
+    width: '100%',
     color: colors.title,
+    textAlign: 'left',
     fontWeight: 'bold',
-    // textAlign: 'auto',
     fontSize: 22,
   },
   desc: {
@@ -33,11 +34,11 @@ const infosStyle = StyleSheet.create({
     color: colors.accent
   },
   year: {
-    width: '20%',
+    position: 'absolute',
+    right: 0,
     fontSize: 10,
-    textAlign: 'right',
     paddingRight: 4,
-    color: `${colors.accent}a3`
+    color: `${colors.title}a3`
   },
   status: {
     fontSize: 10,
