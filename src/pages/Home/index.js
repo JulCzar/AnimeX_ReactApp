@@ -9,6 +9,7 @@ import logo from '../../assets/logo.png'
 
 import getApiData from './utils/getApiData'
 import getReleases from './utils/getReleases'
+import SearchBar from './components/searchBar';
 
 const Home = () => {
   const [animes, setAnimes] = useState([])
@@ -41,10 +42,13 @@ const Home = () => {
             <Image source={logo}/>
           </RectButton>
         </View>
-        {( screen[0] === 'Home' ? animes : releases )
-          .map(({ id, name, image }) => (
-            <AnimeCard key={id} data={{id,name,image}}/>
-          ))}
+        <SearchBar/>
+        <View style={styles.animeList}>
+          {( screen[0] === 'Home' ? animes : releases )
+            .map(({ id, name, image }) => (
+              <AnimeCard key={id} data={{id,name,image}}/>
+            ))}
+        </View>
       </ScrollView>
     </View>
   );

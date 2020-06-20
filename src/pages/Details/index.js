@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useRoute, useNavigation } from '@react-navigation/native'
+import { Feather as Icon } from '@expo/vector-icons'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
-import { Text, View } from 'react-native'
+import { Text, View, ActivityIndicator } from 'react-native'
 
 import getAnimeDetails from './utils/getAnimeDetails'
 
 import styles from './styles'
-import model from './model/animeDetails'
 
-import AnimeInfo from './components/animeInfo'
 import getEpisodeList from './utils/getEpisodeList'
+import AnimeInfo from './components/animeInfo'
+import colors from '../../theme/colors'
 
 const Details = () => {
-  const [animeDetails, setAnimeDetails] = useState(model)
-  const [episodeList, setEpisodeList] = useState([])
+  const [animeDetails, setAnimeDetails] = useState({ isLoading: true })
+  const [episodeList, setEpisodeList] = useState([{ isLoading: true }])
 
   const { params: { id }} = useRoute()
   const navigation = useNavigation()
@@ -26,6 +27,14 @@ const Details = () => {
     getEpisodeList(id, setEpisodeList)
   },[])
 
+  if (animeDetails.isLoading || episodeList.isLoading)
+    return (
+      <ActivityIndicator
+        size='large'
+        style={{flex: 1}}
+        color={colors.accent}
+      />)
+  
   return (
     <View style={styles.screen} >
       <ScrollView
@@ -40,7 +49,10 @@ const Details = () => {
           activeOpacity={0}
         >
           <Text style={styles.returnButton}>
-            &lt;- Voltar
+            <Text>
+              <Icon name='arrow-left' size={24} color={colors.accent} />
+            </Text>
+            Voltar
           </Text>
         </RectButton>
 
@@ -49,7 +61,7 @@ const Details = () => {
         <View style={styles.episodeList}>
           {episodeList.map(({ id, label }) => {
             return (
-              <View key={id} style={[styles.episode]}>
+              <View key={ id } style={[styles.episode]}>
                 <RectButton
                   style={{width: '100%'}}
                   onPress={() => navigation.navigate('VideoPlayer', { id })}

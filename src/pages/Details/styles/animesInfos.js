@@ -31,14 +31,14 @@ const infosStyle = StyleSheet.create({
   },
   desc: {
     textAlign: 'justify',
-    color: colors.accent
+    color: colors.text
   },
   year: {
     position: 'absolute',
     right: 0,
     fontSize: 10,
     paddingRight: 4,
-    color: `${colors.title}a3`
+    color: `${colors.text}a3`
   },
   status: {
     fontSize: 10,

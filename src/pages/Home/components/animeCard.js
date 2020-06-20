@@ -1,7 +1,7 @@
 import React from 'react'
 import { RectButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
-import { View, Image, Text, Dimensions } from 'react-native'
+import { View, Image, Text } from 'react-native'
 
 import truncate from '../../../utils/truncate'
 

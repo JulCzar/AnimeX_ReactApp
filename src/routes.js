@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Details from './pages/Details'
 import colors from './theme/colors'
 import VideoPlayer from './pages/Video'
+import SearchScreen from './pages/Search'
 
 const AppStack = createStackNavigator()
 
@@ -26,6 +27,7 @@ const Routes = () => {
         <AppStack.Screen name="Home" component={Home}/>
         <AppStack.Screen name="Details" component={Details}/>
         <AppStack.Screen name="VideoPlayer" component={VideoPlayer}/>
+        <AppStack.Screen name="SearchScreen" component={SearchScreen}/>
       </AppStack.Navigator>
     </NavigationContainer>
   )
