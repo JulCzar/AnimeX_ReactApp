@@ -1,7 +1,4 @@
 import { StyleSheet } from 'react-native'
-import searchBar from './searchbar'
-import { vmin } from 'react-native-expo-viewport-units'
-import colors from '../../../theme/colors'
 
 export default StyleSheet.create({
   container: {
@@ -25,6 +22,5 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
-  },
-  ...searchBar
+  }
 })

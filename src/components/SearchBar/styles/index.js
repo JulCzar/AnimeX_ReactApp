@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native'
 import colors from '../../../theme/colors'
+import { StyleSheet } from 'react-native'
 
-const searchBar = StyleSheet.create({
+const styles = StyleSheet.create({
   searchContainer: {
     marginVertical: 55
   },
@@ -16,13 +16,13 @@ const searchBar = StyleSheet.create({
   },
   searchBarOnFocus: {
     backgroundColor: colors.accent,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    justifyContent: 'center',
+    overflow: 'hidden',
     paddingLeft: 15,
     width: '100%',
     height: 50,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    overflow: 'hidden',
-    justifyContent: 'center'
 
   },
   searchIcon: {
@@ -54,6 +54,8 @@ const searchBar = StyleSheet.create({
     top: 49,
   },
   suggest: {
+    borderTopColor: '#ffffff58',
+    borderTopWidth: 1,
     paddingHorizontal: 15,
     paddingVertical: 10,
     color: '#ffffff88',
@@ -65,11 +67,12 @@ const searchBar = StyleSheet.create({
     fontWeight: 'bold'
   },
   showAllResults: {
-    color: 'white',
+    borderTopColor: '#ffffff58',
     paddingVertical: 10,
-    borderTopColor: 'white',
-    borderTopWidth: 1
+    textAlign: 'center',
+    borderTopWidth: 1,
+    color: 'white',
   }
 })
 
-export default searchBar
+export default styles

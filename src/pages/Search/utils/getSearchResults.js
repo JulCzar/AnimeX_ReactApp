@@ -1,12 +1,18 @@
-const { default: api } = require("../../../services/api")
+import api from '../../../services/api'
+import parseOdataResponse from '../../../utils/parseOdataResponse'
 
-const getSearchResults = (search, callback) => {
+const getSearchResults = async (search, callback) => {
   const config = {
     params: {
       $orderby: 'Nome',
       $filter: `substringof('${search}', Nome)`,
-      $select: ['Id', 'Nome', 'Desc', 'Ano'].join(',')
     }
   }
-  api.get('odata/Animesdb', config)
+  const { data: apiResponse } = await api.get('odata/Animesdb', config)
+
+  const parsedData = parseOdataResponse(apiResponse)
+
+  callback(parsedData)
 }
+
+export default getSearchResults

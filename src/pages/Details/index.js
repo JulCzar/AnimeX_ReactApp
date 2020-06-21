@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import { Feather as Icon } from '@expo/vector-icons'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
 import { Text, View, ActivityIndicator } from 'react-native'
 
@@ -8,6 +7,7 @@ import getAnimeDetails from './utils/getAnimeDetails'
 
 import styles from './styles'
 
+import ReturnButton from '../../components/ReturnButton'
 import getEpisodeList from './utils/getEpisodeList'
 import AnimeInfo from './components/animeInfo'
 import colors from '../../theme/colors'
@@ -41,20 +41,8 @@ const Details = () => {
         contentContainerStyle={styles.animeScroller}
         showsVerticalScrollIndicator={false}
         style={styles.animesContainer}
-        vertical
       >
-        <RectButton
-          style={styles.returnContainer}
-          onPress={navigation.goBack}
-          activeOpacity={0}
-        >
-          <Text style={styles.returnButton}>
-            <Text>
-              <Icon name='arrow-left' size={24} color={colors.accent} />
-            </Text>
-            Voltar
-          </Text>
-        </RectButton>
+        <ReturnButton/>
 
         <AnimeInfo data={animeDetails}/>
         

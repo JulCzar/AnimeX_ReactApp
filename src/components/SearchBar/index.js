@@ -1,19 +1,21 @@
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
-import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { Feather as Icon } from '@expo/vector-icons'
+import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
 
-import loadSuggests from '../utils/loadSuggests'
+import loadSuggests from './utils/loadSuggests'
 
-import { Feather as Icon } from '@expo/vector-icons'
-import styles from '../styles'
+import styles from './styles'
 
-const SearchBar = () => {
-  const NO_SUGGESTS = {
-    lenght: 0,
-    results: []
-  }
-  const [search, setSearch] = useState('')
+const NO_SUGGESTS = {
+  lenght: 0,
+  results: []
+}
+
+const SearchBar = ({value = ''}) => {
+  const [loading, setLoad] = useState(true)
+  const [search, setSearch] = useState(value)
   const [suggests, setSuggests] = useState(NO_SUGGESTS)
 
   const [buttonAction, setButtonAction] = useState('search')
@@ -21,14 +23,17 @@ const SearchBar = () => {
   const navigation = useNavigation()
   
   useEffect(() => {
-    if (search) {
-      setButtonAction('x')
-      loadSuggests(search, setSuggests)
+    if(!loading) {
+      if (search) {
+        setButtonAction('x')
+        loadSuggests(search, setSuggests)
+      }
+      else {
+        setButtonAction('search')
+        setSuggests(NO_SUGGESTS)
+      }
     }
-    else {
-      setButtonAction('search')
-      setSuggests(NO_SUGGESTS)
-    }
+    else setLoad(false)
   },[search])
 
   const showAllResults = () => {
@@ -59,19 +64,15 @@ const SearchBar = () => {
         />
         <View style={styles.searchIcon} >
           { (buttonAction !== 'search' || suggests.length)
-              ? (
-                  <TouchableOpacity
-                    activeOpacity={0.5}
-                    onPress={handleCloseSuggests}
-                  >
-                    <Icon name='x' size={32} color='white' />
-                  </TouchableOpacity>
-                )
-              : (
-                  <TouchableOpacity activeOpacity={0.5} >
-                    <Icon name='search' size={32} color='white' />
-                  </TouchableOpacity>
-                )
+              ? (<TouchableOpacity
+                activeOpacity={0.5}
+                onPress={handleCloseSuggests}
+              >
+                <Icon name='x' size={32} color='white' />
+              </TouchableOpacity>)
+              : (<TouchableOpacity activeOpacity={0.5} >
+                <Icon name='search' size={32} color='white' />
+              </TouchableOpacity>)
           }
         </View>
       </View>
@@ -88,7 +89,7 @@ const SearchBar = () => {
         <View>
           {suggests.length > 12
           ?(
-            <TouchableOpacity onPress={showAllResults} >
+            <TouchableOpacity style={{width: '100%'}} onPress={showAllResults} >
               <Text style={styles.showAllResults} >
               Mostrar todos os {suggests.length} resultados
               </Text>
