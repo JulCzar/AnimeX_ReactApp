@@ -15,4 +15,4 @@ yarn install
 expo start
 ```
 
-you should now run it on your device by expo cliente - available at your device market.
+you now dhould be able to run it on your device by expo client - available at your device market.
