@@ -13,9 +13,8 @@ const NO_SUGGESTS = {
   results: []
 }
 
-const SearchBar = ({value = ''}) => {
-  const [loading, setLoad] = useState(true)
-  const [search, setSearch] = useState(value)
+const SearchBar = () => {
+  const [search, setSearch] = useState('')
   const [suggests, setSuggests] = useState(NO_SUGGESTS)
 
   const [buttonAction, setButtonAction] = useState('search')
@@ -23,31 +22,27 @@ const SearchBar = ({value = ''}) => {
   const navigation = useNavigation()
   
   useEffect(() => {
-    if(!loading) {
-      if (search) {
-        setButtonAction('x')
-        loadSuggests(search, setSuggests)
-      }
-      else {
-        setButtonAction('search')
-        setSuggests(NO_SUGGESTS)
-      }
+    if (search) {
+      setButtonAction('x')
+      loadSuggests(search, setSuggests)
     }
-    else setLoad(false)
+    else {
+      setButtonAction('search')
+      setSuggests(NO_SUGGESTS)
+    }
   },[search])
 
   const showAllResults = () => {
     if (search) navigation.navigate('SearchScreen', { search })
   }
 
+  const handleCloseSuggests = () => setSuggests(NO_SUGGESTS)
+
   const handleClearInput = () => {
     setSearch('')
     setSuggests(NO_SUGGESTS)
   }
 
-  const handleCloseSuggests = () => {
-    setSuggests(NO_SUGGESTS)
-  }
   return (
     <View style={styles.searchContainer} >
       <View style={
@@ -79,7 +74,7 @@ const SearchBar = ({value = ''}) => {
       <View style={styles.suggestList}>
         {suggests.results.map(({id, label: {prefix, sufix, match}}) => (
           <TouchableOpacity
-            key={id}
+            key={String(id)}
             containerStyle={{width: '100%'}}
             onPress={() => navigation.navigate('Details', { id })}
           >
@@ -98,7 +93,8 @@ const SearchBar = ({value = ''}) => {
           :<View/>}
         </View>
       </View>
-    </View>)
+    </View>
+  )
 }
 
 export default SearchBar

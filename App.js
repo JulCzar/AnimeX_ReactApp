@@ -1,15 +1,14 @@
+import { StatusBar } from 'react-native'
 import React from 'react';
-import { StatusBar } from 'react-native';
 
-import Routes from './src/routes';
-import colors from './src/theme/colors';
+import Routes from './src/routes'
 
 const App = () => {
   return (
     <>
       <StatusBar
         barStyle="light-content"
-        backgroundColor={colors.primary}
+        backgroundColor="#7B35A6"
       />
       <Routes />
     </>

@@ -24,7 +24,7 @@
       "package": "com.julczar.animex"
     },
     "androidNavigationBar": {
-      "backgroundColor": "#9649C5"
+      "visible": "sticky-immersive"
     }
   }
 }

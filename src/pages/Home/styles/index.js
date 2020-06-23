@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import navbar from './navbar'
 
 export default StyleSheet.create({
   container: {
@@ -22,5 +23,6 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
-  }
+  },
+  ...navbar
 })
