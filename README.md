@@ -15,4 +15,4 @@ yarn/npm install
 expo start
 ```
 
-you now dhould be able to run it on your device by expo client - available at your device market.
+you now should be able to run it on your device by expo client - available at your device market.
