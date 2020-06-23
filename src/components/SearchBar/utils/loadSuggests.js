@@ -34,6 +34,11 @@ const parseApiData = (data, search) => {
         )
       }
     }))
+    .sort((a,b) => {
+      const aLength = a.label.prefix.length
+      const bLength = b.label.prefix.length
+      return aLength - bLength
+    })
     .slice(0, 12)
 
   return {length: data["odata.count"], results: parsedData}
