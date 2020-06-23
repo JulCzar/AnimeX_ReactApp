@@ -11,7 +11,7 @@ then access it with: ```cd AnimeX_ReactApp```
 and run:
 
 ```
-yarn install
+yarn/npm install
 expo start
 ```
 
