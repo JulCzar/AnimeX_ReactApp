@@ -1,4 +1,4 @@
-import colors from '../../../theme/colors'
+import colors from '../../theme/colors'
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
+    marginHorizontal: 24,
     position: 'absolute',
     position: 'absolute',
     alignItems:'center',

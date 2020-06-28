@@ -36,30 +36,35 @@ const Details = () => {
       />)
   
   return (
-    <View style={styles.screen} >
-      <ScrollView
-        contentContainerStyle={styles.animeScroller}
-        showsVerticalScrollIndicator={false}
-        style={styles.animesContainer}
-      >
-        <ReturnButton/>
+    <>
+      <View style={styles.screen} >
+        <ScrollView
+          contentContainerStyle={styles.animeScroller}
+          showsVerticalScrollIndicator={false}
+          style={styles.animesContainer}
+        >
+          <ReturnButton/>
 
-        <AnimeInfo data={animeDetails}/>
-        
-        <View style={styles.episodeList}>
-          {episodeList.map(({ id, label }) => (
-            <View key={String(id)} style={[styles.episode]}>
-              <RectButton
-                style={{width: '100%'}}
-                onPress={() => navigation.navigate('VideoPlayer', { id })}
-              >
-                <Text style={styles.episodeLabel}>{label}</Text>
-              </RectButton>
-            </View>
-          ))}
-        </View>
-      </ScrollView>
-    </View>
+          <AnimeInfo data={animeDetails}/>
+          
+          <View style={styles.episodeList}>
+            {episodeList.map(({ id, label }) => (
+              <View key={String(id)} style={[styles.episode]}>
+                <RectButton
+                  style={{width: '100%'}}
+                  onPress={() => navigation.navigate('VideoPlayer', { id })}
+                >
+                  <Text style={styles.episodeLabel}>{label}</Text>
+                </RectButton>
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
+      <View style={styles.chooseQualityContainer}>
+
+      </View>
+    </>
   )
 }
 

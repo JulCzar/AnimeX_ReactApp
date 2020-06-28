@@ -22,9 +22,6 @@
     },
     "android": {
       "package": "com.julczar.animex"
-    },
-    "androidNavigationBar": {
-      "visible": "sticky-immersive"
     }
   }
 }

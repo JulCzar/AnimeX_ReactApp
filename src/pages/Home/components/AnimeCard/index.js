@@ -5,6 +5,7 @@ import { View, Image, Text } from 'react-native'
 
 import truncate from '../../../../utils/truncate'
 import styles from './styles'
+import { NavigationActions } from 'react-navigation'
 
 const AnimeCard = ({ data }) => {
   const { id, name, image } = data

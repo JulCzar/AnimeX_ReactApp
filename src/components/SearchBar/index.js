@@ -4,16 +4,17 @@ import { Feather as Icon } from '@expo/vector-icons'
 import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
 
-import loadSuggests from './utils/loadSuggests'
+import { loadSuggests } from './utils'
 
 import styles from './styles'
+
 
 const NO_SUGGESTS = {
   lenght: 0,
   results: []
 }
 
-const SearchBar = () => {
+const SearchBar = ({ style }) => {
   const [search, setSearch] = useState('')
   const [suggests, setSuggests] = useState(NO_SUGGESTS)
 
@@ -44,7 +45,7 @@ const SearchBar = () => {
   }
 
   return (
-    <View style={styles.searchContainer} >
+    <View style={[styles.searchContainer, style]} >
       <View style={
         suggests.length
           ?styles.searchBarOnFocus

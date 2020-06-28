@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native'
 import { vmin } from 'react-native-expo-viewport-units'
 
-import colors from '../../../../../theme/colors'
+import colors from '../../../../theme/colors'
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   anime: {
     backgroundColor: colors.accent,
     borderColor: colors.primary,
@@ -30,5 +30,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   }
 })
-
-export default styles
