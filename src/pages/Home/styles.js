@@ -1,21 +1,20 @@
 import { StyleSheet } from 'react-native'
+import styled from 'styled-components'
+
+export const HomeContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+`
+
+export const AnimeList = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  logo: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    width: '100%',
-    marginBottom: 20,
-  },
   animeScroller: {
     paddingTop: 40,
-  },
-  animesContainer: {
-    flex: 1,
   },
   animeList: {
     flexDirection: 'row',

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import { RectButton, ScrollView } from 'react-native-gesture-handler'
-import { Text, View, ActivityIndicator } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import { View } from 'react-native'
 
 import getAnimeDetails from './utils/getAnimeDetails'
 
@@ -11,10 +11,14 @@ import ReturnButton from '../../components/ReturnButton'
 import getEpisodeList from './utils/getEpisodeList'
 import AnimeInfo from './components/animeInfo'
 import colors from '../../theme/colors'
+import { getWatchedList, updateWatchedProgress } from './utils/getWatchedList'
+import { LoadingIndicator } from '../../styles'
+import EpisodeCard from './components/EpisodeCard'
 
 const Details = () => {
   const [animeDetails, setAnimeDetails] = useState({ isLoading: true })
-  const [episodeList, setEpisodeList] = useState([{ isLoading: true }])
+  const [episodeList, setEpisodeList] = useState({ isLoading: true })
+  const [watchedList, setWatchedList] = useState([])
 
   const { params: { id }} = useRoute()
   const navigation = useNavigation()
@@ -27,13 +31,19 @@ const Details = () => {
     getEpisodeList(id, setEpisodeList)
   },[])
 
+  useEffect(() => {
+    getWatchedList(id, setWatchedList)
+  }, [])
+
+  useEffect(() => {console.log(watchedList)}, [watchedList])
+  
+  const handleNavigateToVideo = async episodeId => {
+    await updateWatchedProgress(id, episodeId, setWatchedList)
+    navigation.navigate('VideoPlayer', { id })
+  }
+
   if (animeDetails.isLoading || episodeList.isLoading)
-    return (
-      <ActivityIndicator
-        size='large'
-        style={{flex: 1}}
-        color={colors.accent}
-      />)
+    return <LoadingIndicator size='large' color={colors.accent} />
   
   return (
     <>
@@ -48,15 +58,15 @@ const Details = () => {
           <AnimeInfo data={animeDetails}/>
           
           <View style={styles.episodeList}>
-            {episodeList.map(({ id, label }) => (
-              <View key={String(id)} style={[styles.episode]}>
-                <RectButton
-                  style={{width: '100%'}}
-                  onPress={() => navigation.navigate('VideoPlayer', { id })}
-                >
-                  <Text style={styles.episodeLabel}>{label}</Text>
-                </RectButton>
-              </View>
+            {episodeList.isLoading
+            ?<LoadingIndicator size='large' color={colors.accent} />
+            :episodeList.map(({id, label}) => (
+              <EpisodeCard
+                key={id}
+                data={{id, label}}
+                watchedList={watchedList}
+                onPress={() => handleNavigateToVideo(id)}
+              />
             ))}
           </View>
         </ScrollView>

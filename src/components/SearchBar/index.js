@@ -6,7 +6,7 @@ import { View, Text } from 'react-native'
 
 import { loadSuggests } from './utils'
 
-import styles from './styles'
+import styles, { MatchResult, Suggest, ShowDetailedSearch } from './styles'
 
 
 const NO_SUGGESTS = {
@@ -33,12 +33,8 @@ const SearchBar = ({ style }) => {
     }
   },[search])
 
-  const showAllResults = () => {
-    if (search) navigation.navigate('SearchScreen', { search })
-  }
-
+  const showAllResults = () => { if (search) navigation.navigate('SearchScreen', { search })}
   const handleCloseSuggests = () => setSuggests(NO_SUGGESTS)
-
   const handleClearInput = () => {
     setSearch('')
     setSuggests(NO_SUGGESTS)
@@ -79,19 +75,21 @@ const SearchBar = ({ style }) => {
             containerStyle={{width: '100%'}}
             onPress={() => navigation.navigate('Details', { id })}
           >
-            <Text style={styles.suggest} >{prefix}<Text style={styles.matchResult}>{match}</Text>{sufix}</Text>
+            <Suggest>
+              {prefix}
+              <MatchResult>
+                {match}
+              </MatchResult>
+              {sufix}
+            </Suggest>
           </TouchableOpacity>
         ))}
         <View>
-          {suggests.length > 12
-          ?(
+          {suggests.length && (
             <TouchableOpacity style={{width: '100%'}} onPress={showAllResults} >
-              <Text style={styles.showAllResults} >
-              Mostrar todos os {suggests.length} resultados
-              </Text>
+              <ShowDetailedSearch>Mostrar detalhes</ShowDetailedSearch>
             </TouchableOpacity>
-          )
-          :<View/>}
+          )}
         </View>
       </View>
     </View>

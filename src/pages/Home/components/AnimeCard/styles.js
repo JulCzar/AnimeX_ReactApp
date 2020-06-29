@@ -1,32 +1,32 @@
-import { StyleSheet } from 'react-native'
+import styled from 'styled-components'
 import { vmin } from 'react-native-expo-viewport-units'
 
 import colors from '../../../../theme/colors'
 
-export default StyleSheet.create({
-  anime: {
-    backgroundColor: colors.accent,
-    borderColor: colors.primary,
-    alignItems: 'center',
-    marginVertical: 10,
-    overflow: 'hidden',
-    borderRadius: 15,
-    borderWidth: 5,
-    width: vmin(42),
-    height: vmin(66)
-  },
-  image: {
-    width: vmin(42),
-    height: vmin(52),
-  },
-  nameContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  animeName: {
-    padding: 5,
-    color: 'white',
-    textAlign: 'center',
-  }
-})
+export const AnimeCardContainer = styled.View`
+  align-items: center;
+  background-color: ${colors.accent};
+  border-radius: 15px;
+  border: 5px solid ${colors.primary};
+  height: ${vmin(66)}px;
+  margin: 10px 0px;
+  overflow: hidden;
+  width: ${vmin(42)}px;
+`
+
+export const AnimeImage = styled.Image`
+  width: ${vmin(42)}px;
+  height: ${vmin(52)}px;
+`
+
+export const AnimeNameContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+`
+
+export const AnimeName = styled.Text`
+  padding: 5px;
+  color: white;
+  text-align: center;
+`

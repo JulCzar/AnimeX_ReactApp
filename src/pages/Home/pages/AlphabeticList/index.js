@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
+import { View, Image } from 'react-native';
+import colors from '../../../../theme/colors';
+import logo from '../../../../assets/logo.png';
+import SearchBar from '../../../../components/SearchBar';
+import styles, { AnimeList } from '../../styles';
 import { LoadingIndicator } from '../../../../styles';
 import { AnimeCard } from '../../components';
 import { getApiData } from '../../utils';
-import colors from '../../../../theme/colors';
-import { View, Image } from 'react-native';
-import styles from '../../styles';
-import { ScrollView } from 'react-native-gesture-handler';
-import SearchBar from '../../../../components/SearchBar';
-
-import logo from '../../../../assets/logo.png';
+import { LogoContainer } from './styles';
 
 const AlphabeticList = () => {
   const [animes, setAnimes] = useState({ isLoading: true })
@@ -18,25 +18,19 @@ const AlphabeticList = () => {
   }, [])
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.animeScroller}
-      showsVerticalScrollIndicator={false}
-      style={styles.animesContainer}
-      // vertical
-    >
-      <View style={[styles.logo, styles.padding]} >
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <LogoContainer>
         <Image source={logo}/>
-      </View>
+      </LogoContainer>
       <SearchBar style={styles.padding}/>
-      
-      <View style={styles.animeList} >
+      <AnimeList>
         {animes.isLoading
           ?<View/>
           :animes.map(({ id, ...otherData }) => (
             <AnimeCard key={String(id)} data={{id,...otherData}}/>
           ))
         }
-      </View>
+      </AnimeList>
       <LoadingIndicator size='large' color={colors.accent} />
     </ScrollView>
   )

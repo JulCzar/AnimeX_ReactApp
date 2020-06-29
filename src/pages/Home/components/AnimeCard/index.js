@@ -4,8 +4,12 @@ import { useNavigation } from '@react-navigation/native'
 import { View, Image, Text } from 'react-native'
 
 import truncate from '../../../../utils/truncate'
-import styles from './styles'
-import { NavigationActions } from 'react-navigation'
+import {
+  AnimeCardContainer,
+  AnimeImage,
+  AnimeName,
+  AnimeNameContainer
+} from './styles'
 
 const AnimeCard = ({ data }) => {
   const { id, name, image } = data
@@ -17,20 +21,18 @@ const AnimeCard = ({ data }) => {
   }
   
   return (
-  <View style={styles.anime}>
+  <AnimeCardContainer>
     <RectButton
       key={id}
       style={{flex: 1}}
       onPress={() => openDetails(id)}
     >
-      <Image style={styles.image} source={image} />
-      <View style={styles.nameContainer}>
-        <Text style={styles.animeName}>
-          { truncate(name, 34) }
-        </Text>
-      </View>
+      <AnimeImage source={image} />
+      <AnimeNameContainer>
+        <AnimeName>{truncate(name, 34)}</AnimeName>
+      </AnimeNameContainer>
     </RectButton>
-  </View>
+  </AnimeCardContainer>
   )
 }
 

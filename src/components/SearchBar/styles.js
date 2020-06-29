@@ -1,5 +1,32 @@
 import colors from '../../theme/colors'
 import { StyleSheet } from 'react-native'
+import styled from 'styled-components'
+
+export const SearchContainer = styled.View`
+  margin: 55px 24px;
+`
+
+export const Suggest = styled.Text`
+  border: 1px solid transparent;
+  border-top-color: #fff5;
+  padding: 10px 15px;
+  color: #fff8;
+  width: 100%;
+  font-size: 13px;
+`
+
+export const MatchResult = styled.Text`
+  color: #fffc;
+  font-weight: bold;
+`
+
+export const ShowDetailedSearch = styled.Text`
+  border: 1px solid transparent;
+  border-top-color: #fff5;
+  padding: 10px 0px;
+  text-align: center;
+  color: #fff;
+`
 
 const styles = StyleSheet.create({
   searchContainer: {
@@ -7,12 +34,12 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     backgroundColor: colors.accent,
-    paddingLeft: 15,
-    width: '100%',
-    height: 50,
     borderRadius: 15,
+    justifyContent: 'center',
+    height: 50,
+    paddingLeft: 15,
     overflow: 'hidden',
-    justifyContent: 'center'
+    width: '100%',
   },
   searchBarOnFocus: {
     backgroundColor: colors.accent,
@@ -48,31 +75,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     position: 'absolute',
     position: 'absolute',
-    alignItems:'center',
+    alignItems: 'center',
     overflow: 'hidden',
     width: '100%',
     zIndex: 1,
     top: 49,
-  },
-  suggest: {
-    borderTopColor: '#ffffff58',
-    borderTopWidth: 1,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    color: '#ffffff88',
-    width: '100%',
-    fontSize: 13
-  },
-  matchResult: {
-    color: '#ffffffd8',
-    fontWeight: 'bold'
-  },
-  showAllResults: {
-    borderTopColor: '#ffffff58',
-    paddingVertical: 10,
-    textAlign: 'center',
-    borderTopWidth: 1,
-    color: 'white',
   }
 })
 

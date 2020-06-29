@@ -5,7 +5,7 @@ import { LoadingIndicator } from '../../../../styles';
 import colors from '../../../../theme/colors';
 import { AnimeCard } from '../../components';
 import { getReleases } from '../../utils';
-import styles from '../../styles';
+import styles, { AnimeList } from '../../styles';
 import { View } from 'react-native';
 
 const ReleaseList = () => {
@@ -17,21 +17,17 @@ const ReleaseList = () => {
 
   return (
     <ScrollView
-      style={styles.animesContainer}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.animeScroller}
+      contentContainerStyle={{paddingTop: 40}}
     >
-      <View style={styles.animeList} >
-        {releases.isLoading
-        ?<View/>
-        :releases.map(({ id, ...otherData }) => (
-          <AnimeCard key={String(id)} data={{id,...otherData}}/>
+      <AnimeList>
+        {!releases.isLoading && releases.map(({ id, ...otherData }) => (
+          <AnimeCard key={String(id)} data={{id,...otherData}} />
         ))}
-      </View>
-      {releases.isLoading
-        ?<LoadingIndicator size='large' color={colors.accent} />
-        :<View/>
-      }
+      </AnimeList>
+      {releases.isLoading && (
+        <LoadingIndicator size='large' color={colors.accent} />
+      )}
     </ScrollView>
   )
 }
