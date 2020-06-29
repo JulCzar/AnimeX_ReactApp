@@ -10,6 +10,7 @@ export const Episode = styled.View`
 `
 export const EpisodeSeen = styled.View`
   border-radius: 20px;
+  border: 3px solid ${colors.primary};
   background-color: ${colors.accent};
   margin: 5px 0px;
   overflow: hidden;

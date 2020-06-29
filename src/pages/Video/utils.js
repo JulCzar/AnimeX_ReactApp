@@ -1,4 +1,4 @@
-import api from "../../../services/api"
+import api from "../../services/api"
 
 const getVideoQualities = async (id, callback) => {
   const config = {
@@ -6,6 +6,7 @@ const getVideoQualities = async (id, callback) => {
   }
   const { data: apiResponse } = await api.get('api/episodioexes/links', config)
 
+  console.log(apiResponse)
   const dataParsed = apiResponse.map(({Id, Nome, Endereco}) => ({
     id: Id,
     label: Nome,

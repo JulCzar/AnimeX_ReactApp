@@ -17,7 +17,7 @@ const SearchScreen = () => {
 
   useEffect(() => {
     getSearchResults(search, setResults)
-  })
+  },[])
 
   if (results.isLoading)
   return (

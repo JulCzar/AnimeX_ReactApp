@@ -34,12 +34,10 @@ const Details = () => {
   useEffect(() => {
     getWatchedList(id, setWatchedList)
   }, [])
-
-  useEffect(() => {console.log(watchedList)}, [watchedList])
   
   const handleNavigateToVideo = async episodeId => {
     await updateWatchedProgress(id, episodeId, setWatchedList)
-    navigation.navigate('VideoPlayer', { id })
+    navigation.navigate('VideoPlayer', { episodeId })
   }
 
   if (animeDetails.isLoading || episodeList.isLoading)
