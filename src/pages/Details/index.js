@@ -5,7 +5,7 @@ import { View } from 'react-native'
 
 import getAnimeDetails from './utils/getAnimeDetails'
 
-import styles from './styles'
+import styles, { QualitiesContainer } from './styles'
 
 import ReturnButton from '../../components/ReturnButton'
 import getEpisodeList from './utils/getEpisodeList'
@@ -69,9 +69,9 @@ const Details = () => {
           </View>
         </ScrollView>
       </View>
-      <View style={styles.chooseQualityContainer}>
-
-      </View>
+      <QualitiesContainer>
+        
+      </QualitiesContainer>
     </>
   )
 }

@@ -3,7 +3,7 @@
     "name": "AnimeX",
     "slug": "AnimeX",
     "platforms": ["android"],
-    "version": "1.0.0",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

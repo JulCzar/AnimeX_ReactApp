@@ -7,6 +7,7 @@ import { View, Text } from 'react-native'
 import { loadSuggests } from './utils'
 
 import styles, { MatchResult, Suggest, ShowDetailedSearch } from './styles'
+import colors from '../../theme/colors'
 
 
 const NO_SUGGESTS = {
