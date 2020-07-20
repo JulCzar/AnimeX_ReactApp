@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native'
 import styled from 'styled-components'
 
 export const HomeContainer = styled.View`
@@ -11,17 +10,3 @@ export const AnimeList = styled.View`
   flex-wrap: wrap;
   justify-content: space-evenly;
 `
-
-export default StyleSheet.create({
-  animeScroller: {
-    paddingTop: 40,
-  },
-  animeList: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-  },
-  padding: {
-    paddingHorizontal: 24,
-  }
-})

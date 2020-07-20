@@ -1,5 +1,5 @@
 import api from '../../../services/api'
-import parseOdataResponse from '../../../utils/parseOdataResponse'
+import { parseOdataResponse } from '../../../utils'
 
 const getSearchResults = async (search, callback) => {
   const config = {

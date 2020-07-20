@@ -1,4 +1,4 @@
-const { default: api } = require("../../../services/api")
+import api from '../../../services/api'
 
 const getEpisodeList = async (id, callback) => {
   const { data: apiResponse } = await api

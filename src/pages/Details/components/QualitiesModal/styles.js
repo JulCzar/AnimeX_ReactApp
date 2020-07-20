@@ -1,6 +1,8 @@
 import styled from 'styled-components'
-import colors from '../../theme/colors'
-import { vmin } from '../../theme/Dimensions'
+import { Dimensions } from 'react-native';
+import colors from '../../../../theme/colors';
+
+const vmin = number => Math.min(Dimensions.get('window').width * (number / 100), Dimensions.get('window').height * (number / 100))
 
 export const ModalView = styled.View`
   align-items: center;

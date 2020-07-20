@@ -47,10 +47,7 @@ const parseApiData = (data, search) => {
     })
     .slice(0, 12)
 
-  return {
-    length: data["odata.count"],
-    results: parsedData
-  }
+  return parsedData
 }
 
 export const loadSuggests = async (search, callback) => {
@@ -67,7 +64,6 @@ export const loadSuggests = async (search, callback) => {
     .get('odata/Animesdb', config)
 
   const dataParsed = parseApiData(apiResponse, search)
-    
 
   callback(dataParsed)
 }

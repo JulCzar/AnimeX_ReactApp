@@ -1,34 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
-import { ScrollView } from 'react-native-gesture-handler';
-import { LoadingIndicator } from '../../../../styles';
-import colors from '../../../../theme/colors';
-import { AnimeCard } from '../../components';
-import { getReleases } from '../../utils';
-import styles, { AnimeList } from '../../styles';
-import { View } from 'react-native';
+import { getReleases } from '../../utils'
+import { FlatList } from 'react-native';
+import { flatlistConfig } from '../common'
+import { useOrientation } from '../../../../utils'
 
 const ReleaseList = () => {
-  const [releases, setReleases] = useState({isLoading: true})
+  const [releases, setReleases] = useState([])
+  const orientation = useOrientation()
 
-  useEffect(() => {
-    getReleases(setReleases)
-  }, [])
+  useEffect(() => { getReleases(setReleases) }, [])
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{paddingTop: 40}}
-    >
-      <AnimeList>
-        {!releases.isLoading && releases.map(({ id, ...otherData }) => (
-          <AnimeCard key={String(id)} data={{id,...otherData}} />
-        ))}
-      </AnimeList>
-      {releases.isLoading && (
-        <LoadingIndicator size='large' color={colors.accent} />
-      )}
-    </ScrollView>
+    <FlatList
+      data={releases}
+      numColumns={orientation === 'PORTRAIT' ? 2 : 4}
+      key={orientation === 'PORTRAIT' ? 2 : 4}
+      {...flatlistConfig}
+    />
   )
 }
 

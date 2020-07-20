@@ -1,4 +1,4 @@
-import parseOdataResponse from '../../utils/parseOdataResponse'
+import { parseOdataResponse } from '../../utils'
 import api from '../../services/api'
 
 export const getApiData = async callback => {// Configs to get api data

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
-import { vmin } from 'react-native-expo-viewport-units'
-import colors from '../../../../../theme/colors'
+import colors from '../../../../theme/colors'
+import { vmin } from '../../../../theme/Dimensions'
 
 const styles = StyleSheet.create({
   card: {

@@ -1,78 +1,106 @@
 import React, { useEffect, useState } from 'react'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import { ScrollView } from 'react-native-gesture-handler'
-import { View } from 'react-native'
+import {  } from 'react-native-gesture-handler'
+import { default as Select } from 'react-native-picker-select'
 
 import getAnimeDetails from './utils/getAnimeDetails'
 
-import styles, { QualitiesContainer } from './styles'
+import { ModalView, ModalBox, OpenVideo } from './styles'
 
 import ReturnButton from '../../components/ReturnButton'
 import getEpisodeList from './utils/getEpisodeList'
-import AnimeInfo from './components/animeInfo'
-import colors from '../../theme/colors'
+import { AnimeInfos } from './components'
 import { getWatchedList, updateWatchedProgress } from './utils/getWatchedList'
-import { LoadingIndicator } from '../../styles'
+import getQualities from './utils/getQualities'
+import { LoadingIndicator } from '../../components'
 import EpisodeCard from './components/EpisodeCard'
+import { Container } from './style'
+import { Modal, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 
 const Details = () => {
-  const [animeDetails, setAnimeDetails] = useState({ isLoading: true })
-  const [episodeList, setEpisodeList] = useState({ isLoading: true })
+  const [animeDetails, setAnimeDetails] = useState({isLoading: true})
+  const [episodeList, setEpisodeList] = useState([])
   const [watchedList, setWatchedList] = useState([])
-
-  const { params: { id }} = useRoute()
+  const [qualities, setQualities] = useState(false)
+  const [episode, setEpisode] = useState(false)
   const navigation = useNavigation()
 
-  useEffect(() => {
-    getAnimeDetails(id, setAnimeDetails)
-  }, [])
+  const { params: { id } } = useRoute()
 
   useEffect(() => {
     getEpisodeList(id, setEpisodeList)
-  },[])
-
-  useEffect(() => {
     getWatchedList(id, setWatchedList)
+    getAnimeDetails(id, setAnimeDetails)
   }, [])
   
-  const handleNavigateToVideo = async episodeId => {
-    await updateWatchedProgress(id, episodeId, setWatchedList)
-    navigation.navigate('VideoPlayer', { episodeId })
+  const handleShowModal = async episodeId => {
+    setQualities([])
+    getQualities(episodeId, setQualities)
   }
 
-  if (animeDetails.isLoading || episodeList.isLoading)
-    return <LoadingIndicator size='large' color={colors.accent} />
-  
-  return (
-    <>
-      <View style={styles.screen} >
-        <ScrollView
-          contentContainerStyle={styles.animeScroller}
-          showsVerticalScrollIndicator={false}
-          style={styles.animesContainer}
-        >
-          <ReturnButton/>
+  const openVideo = () => {
+    const { video } = qualities.filter(({ value }) => value === episode)[0]
+    updateWatchedProgress(id, episode, setWatchedList)
+    navigation.navigate('VideoPlayer', { video })
+    setQualities(false)
+  }
 
-          <AnimeInfo data={animeDetails}/>
-          
-          <View style={styles.episodeList}>
-            {episodeList.isLoading
-            ?<LoadingIndicator size='large' color={colors.accent} />
-            :episodeList.map(({id, label}) => (
-              <EpisodeCard
-                key={id}
-                data={{id, label}}
-                watchedList={watchedList}
-                onPress={() => handleNavigateToVideo(id)}
-              />
-            ))}
-          </View>
-        </ScrollView>
-      </View>
-      <QualitiesContainer>
-        
-      </QualitiesContainer>
-    </>
+  if (animeDetails.isLoading)
+    return <LoadingIndicator/>
+
+  const flatListOptions = {
+    ListHeaderComponent: () => (
+      <>
+        <ReturnButton/>
+        <AnimeInfos data={animeDetails}/>
+      </>
+    ),
+    renderItem: ({item }) => (
+      <EpisodeCard
+        data={item}
+        watchedList={watchedList}
+        onPress={() => handleShowModal(item.id)}
+      />
+    ),
+    keyExtractor: data => String(data.id),
+    showsVerticalScrollIndicator: false,
+    contentContainerStyle: {
+      paddingVertical: 20
+    }
+  }
+  return (
+    <Container>
+      <FlatList
+        data={episodeList}
+        ListEmptyComponent={LoadingIndicator}
+        {...flatListOptions}
+      />
+      <Modal
+        animationType='slide'
+        transparent
+        visible={typeof qualities === 'object'}
+      >
+        {!qualities.length
+        ?<LoadingIndicator/>
+        :<TouchableWithoutFeedback onPress={() => setQualities(false)}>
+          <ModalView >
+            <TouchableWithoutFeedback onPress={evt => evt.stopPropagation()}>
+              <ModalBox>
+                <Select
+                  onValueChange={val => setEpisode(val)}
+                  placeholder={{label: 'Escolha a qualidade', value: null}}
+                  value={episode}
+                  items={qualities}
+                />
+                <TouchableOpacity onPress={openVideo}>
+                  {episode && <OpenVideo>Abrir Video</OpenVideo>}
+                </TouchableOpacity>
+              </ModalBox>
+            </TouchableWithoutFeedback>
+          </ModalView>
+        </TouchableWithoutFeedback>}
+      </Modal>
+    </Container>
   )
 }
 

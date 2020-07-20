@@ -17,17 +17,17 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <AppStack.Navigator
-        headerMode="none"
+        headerMode='none'
         screenOptions={{
           cardStyle: {
             backgroundColor: colors.background
           }
         }}
       >
-        <AppStack.Screen name="Home" component={Home}/>
-        <AppStack.Screen name="Details" component={Details}/>
-        <AppStack.Screen name="VideoPlayer" component={VideoPlayer}/>
-        <AppStack.Screen name="SearchScreen" component={SearchScreen}/>
+        <AppStack.Screen name='Home' component={Home}/>
+        <AppStack.Screen name='Details' component={Details}/>
+        <AppStack.Screen name='VideoPlayer' component={VideoPlayer}/>
+        <AppStack.Screen name='SearchScreen' component={SearchScreen}/>
       </AppStack.Navigator>
     </NavigationContainer>
   )

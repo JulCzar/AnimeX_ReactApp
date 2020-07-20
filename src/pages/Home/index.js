@@ -24,12 +24,12 @@ const Home = () => {
     <HomeContainer>
       <Tab.Navigator tabBarOptions={changeActiveTint}>
         <Tab.Screen
-          name="Lista Alfabética"
+          name='Lista Alfabética'
           component={AlphabeticList}
           options={() => getIcon('home')}
         />
         <Tab.Screen 
-          name="Lançamentos"
+          name='Lançamentos'
           component={ReleaseList}
           options={() => getIcon('rocket')}
         />

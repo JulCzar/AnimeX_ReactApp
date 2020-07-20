@@ -28,7 +28,7 @@ const getAnimeDetails = async (id, callback) => {
     
     return acc
   }, {})
-
+  
   callback(dataParsed)
 }
 

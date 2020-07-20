@@ -1,24 +1,17 @@
-import getVideoQualities from './utils';
-import { useRoute } from '@react-navigation/native';
-import React, { useState, useEffect } from 'react'
-import { Video } from 'expo-av';
-import styles from './styles';
+import { useRoute } from '@react-navigation/native'
+import { Video } from 'expo-av'
+import styles from './styles'
+import React from 'react'
 
 const VideoPlayer = () => {
-  const { params: { episodeId } } = useRoute()
-  const [video, setVideo] = useState({})
-
-  useEffect(() => {
-    getVideoQualities(episodeId, setVideo)
-  },[])
-
+  const { params: { video } } = useRoute()
+  
   return (
     <Video
       useNativeControls={true}
       style={styles.video}
-      resizeMode="contain"
+      resizeMode='contain'
       source={video}
-      
     />)
 }
 

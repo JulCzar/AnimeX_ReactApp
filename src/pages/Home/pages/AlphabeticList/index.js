@@ -1,39 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
-import { View, Image } from 'react-native';
-import colors from '../../../../theme/colors';
-import logo from '../../../../assets/logo.png';
-import SearchBar from '../../../../components/SearchBar';
-import styles, { AnimeList } from '../../styles';
-import { LoadingIndicator } from '../../../../styles';
-import { AnimeCard } from '../../components';
-import { getApiData } from '../../utils';
-import { LogoContainer } from './styles';
+import React, { useState, useEffect } from 'react'
+import { Image, FlatList } from 'react-native'
+import styled from 'styled-components'
+
+import { SearchBar } from '../../../../components'
+import { useOrientation } from '../../../../utils'
+import logo from '../../../../assets/logo.png'
+import { flatlistConfig } from '../common'
+import { getApiData } from '../../utils'
+import { LoadingIndicator } from '../../../../components/LoadingIndicator'
 
 const AlphabeticList = () => {
-  const [animes, setAnimes] = useState({ isLoading: true })
+  const [isLoading, setLoadingStatus] = useState(false)
+  const [animes, setAnimes] = useState([])
+  const orientation = useOrientation()
 
-  useEffect(() => {
-    getApiData(setAnimes)
-  }, [])
+  useEffect(() => { getApiData(setAnimes) }, [])
 
+  const columns = orientation === 'PORTRAIT' ? 2 : 4
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <LogoContainer>
-        <Image source={logo}/>
-      </LogoContainer>
-      <SearchBar style={styles.padding}/>
-      <AnimeList>
-        {animes.isLoading
-          ?<View/>
-          :animes.map(({ id, ...otherData }) => (
-            <AnimeCard key={String(id)} data={{id,...otherData}}/>
-          ))
-        }
-      </AnimeList>
-      <LoadingIndicator size='large' color={colors.accent} />
-    </ScrollView>
+    <FlatList
+      data={animes}
+      numColumns={columns}
+      key={columns}
+      ListFooterComponent={isLoading && <LoadingIndicator />}
+      ListHeaderComponent={
+        <>
+          <LogoContainer>
+            <Image source={logo}/>
+          </LogoContainer>
+          <SearchBar />
+        </>
+      }
+      {...flatlistConfig}
+    />
   )
 }
+
+export const LogoContainer = styled.View`
+  margin: 20px 0px;
+`
 
 export default AlphabeticList

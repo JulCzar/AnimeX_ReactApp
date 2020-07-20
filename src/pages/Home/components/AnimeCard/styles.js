@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { vmin } from 'react-native-expo-viewport-units'
-
 import colors from '../../../../theme/colors'
+import { vmin } from '../../../../theme/Dimensions'
 
 export const AnimeCardContainer = styled.View`
   align-items: center;
@@ -9,9 +8,10 @@ export const AnimeCardContainer = styled.View`
   border-radius: 15px;
   border: 5px solid ${colors.primary};
   height: ${vmin(66)}px;
-  margin: 10px 0px;
+  margin: 10px 4px;
   overflow: hidden;
   width: ${vmin(42)}px;
+  z-index: 1;
 `
 
 export const AnimeImage = styled.Image`

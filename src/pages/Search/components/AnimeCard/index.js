@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native'
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 
-import truncate from '../../../../utils/truncate'
+import { truncate } from '../../../../utils'
 
 import styles from './styles'
 
