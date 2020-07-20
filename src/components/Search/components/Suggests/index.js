@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import HighlightMatch from './HighlightMatch'
 
-const Suggests = ({ items, loadDetail }) => {
+const Suggests = ({ items, loadDetail, search }) => {
   const navigation = useNavigation()
 
   const showAllResults = () => { navigation.navigate('SearchScreen', { search }) }

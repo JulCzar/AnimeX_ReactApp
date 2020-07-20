@@ -64,6 +64,7 @@ const Search = () => {
       <SuggestList
         items={suggests}
         loadDetail={navigateToDetails}
+        search={search}
       />
     </Container>
   )
