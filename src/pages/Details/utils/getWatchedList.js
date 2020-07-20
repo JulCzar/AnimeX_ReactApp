@@ -19,7 +19,7 @@ export const updateWatchedProgress = async (animeId, episodeId, callback) => {
     ...watchedList,
     [String(animeId)]: Array.from(newProgressList)
   }
-
   await Store.setItemAsync(KEY, JSON.stringify(newWatchedList))
   callback(Array.from(newProgressList))
+  console.log('ta cheando aqui vei')
 }

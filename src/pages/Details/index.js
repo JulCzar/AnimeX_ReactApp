@@ -22,7 +22,8 @@ const Details = () => {
   const [episodeList, setEpisodeList] = useState([])
   const [watchedList, setWatchedList] = useState([])
   const [qualities, setQualities] = useState(false)
-  const [episode, setEpisode] = useState(false)
+  const [episode, setEpisode] = useState(null)
+  const [videoId, setVideo] = useState(false)
   const navigation = useNavigation()
 
   const { params: { id } } = useRoute()
@@ -35,12 +36,13 @@ const Details = () => {
   
   const handleShowModal = async episodeId => {
     setQualities([])
+    setEpisode(episodeId)
     getQualities(episodeId, setQualities)
   }
 
-  const openVideo = () => {
-    const { video } = qualities.filter(({ value }) => value === episode)[0]
-    updateWatchedProgress(id, episode, setWatchedList)
+  const openVideo = async () => {
+    const { video } = qualities.filter(({ value }) => value === videoId)[0]
+    await updateWatchedProgress(id, episode, setWatchedList)
     navigation.navigate('VideoPlayer', { video })
     setQualities(false)
   }
@@ -87,9 +89,9 @@ const Details = () => {
             <TouchableWithoutFeedback onPress={evt => evt.stopPropagation()}>
               <ModalBox>
                 <Select
-                  onValueChange={val => setEpisode(val)}
+                  onValueChange={val => setVideo(val)}
                   placeholder={{label: 'Escolha a qualidade', value: null}}
-                  value={episode}
+                  value={videoId}
                   items={qualities}
                 />
                 <TouchableOpacity onPress={openVideo}>
