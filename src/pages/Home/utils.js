@@ -18,7 +18,7 @@ export const getApiData = async callback => {// Configs to get api data
 }
 
 export const getReleases = async callback => {
-  const { data: apiResponse } = await api.get('api/animes/lancamento')
+  const { data: apiResponse } = await api.get('api/animes/recentes')
 
   const dataParsed = apiResponse.map(({Id, Nome, Imagem}) => ({
     id: Id,
